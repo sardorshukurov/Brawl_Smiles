@@ -8,17 +8,22 @@ public class PowerupUI : MonoBehaviour
     [SerializeField] private TextMeshProUGUI powerup1Text, powerup2Text;
     [SerializeField] private GameObject powerup1GameObject, powerup2GameObject;
 
-    private string powerup1String = "Increased Damage: ";
-    private string powerup2String = "Freeze: "; 
+    private string powerup1String;
+    private string powerup2String; 
 
     private void Start()
     {
         powerup1 = 0;
         powerup2 = 0;
+        powerup1Text.text = powerup1String;
+        powerup2Text.text = powerup2String;
     }
 
     private void Update()
     {
+        powerup1String = Strings.Instance.GetString(9);
+        powerup2String = Strings.Instance.GetString(8);
+
         if (powerup1 > 0)
         {
             powerup1GameObject.SetActive(true);

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Globalization;
+using System.Runtime.InteropServices;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,7 +9,13 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-    
+
+    [DllImport("__Internal")]    
+    private static extern void ShowAdv();
+
+    [DllImport("__Internal")]
+    private static extern void AddCoinsExtern();
+
     [SerializeField] private TextMeshProUGUI currentTimeText;
     private float currentTime;
     [SerializeField] private GameObject gameOverUI;
@@ -111,6 +118,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        ShowAdv();
         StartCoroutine(GameOverCountDown());    
     }
 
@@ -139,12 +147,14 @@ public class GameManager : MonoBehaviour
 
     public void Play()
     {
+        ShowAdv();
         SoundManager.Instance.PlaySound(clip);
         StartCoroutine(levelLoader.LoadLevel(1));
     }
 
     public void Home()
     {
+        ShowAdv();
         SoundManager.Instance.PlaySound(clip);
         StartCoroutine(levelLoader.LoadLevel(0));
         pause = false;
@@ -208,8 +218,12 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt(coinPref, PlayerPrefs.GetInt(coinPref, 0) + 1);
     }
 
-    public void AddCoins()
+    public void ShowAdvButton()
     {
-        PlayerPrefs.SetInt(coinPref, PlayerPrefs.GetInt(coinPref, 0) + 100000);
+        AddCoinsExtern();
+    }
+    public void AddCoinsForAd()
+    {
+        PlayerPrefs.SetInt(coinPref, PlayerPrefs.GetInt(coinPref, 0) + 300);
     }
 }

@@ -13,6 +13,11 @@ public class SkinInShop : MonoBehaviour
     [SerializeField] private GameObject panel;
     [SerializeField] private GameObject price;
 
+    private string buyText;
+    private string equipText;
+    private string equipedText;
+
+    [SerializeField] private AudioClip clip;
     private void Awake()
     {
         skinImage.sprite = skinInfo.skinSprite;
@@ -22,6 +27,10 @@ public class SkinInShop : MonoBehaviour
 
     private void Update()
     {
+        buyText = Strings.Instance.GetString(5);
+        equipText = Strings.Instance.GetString(6);
+        equipedText = Strings.Instance.GetString(7);
+
         IsSkinUnlocked();
         IsSkinEquiped();
         if (isSkinUnlocked)
@@ -31,6 +40,7 @@ public class SkinInShop : MonoBehaviour
         }
         else
         {
+            buttonText.text = buyText;
             panel.SetActive(true);
             price.SetActive(true);
             price.GetComponent<TextMeshProUGUI>().text = skinInfo.skinPrice.ToString();
@@ -38,6 +48,7 @@ public class SkinInShop : MonoBehaviour
     }
     public void OnButtonPress()
     {
+        SoundManager.Instance.PlaySound(clip);
         if (isSkinUnlocked)
         {
             FindObjectOfType<SkinManager>().EquipSkin(skinInfo); 
@@ -48,7 +59,7 @@ public class SkinInShop : MonoBehaviour
             {
                 isSkinUnlocked = true;
                 PlayerPrefs.SetInt(skinInfo.skinID.ToString(), 1);
-                buttonText.text = "Equip";
+                buttonText.text = equipText;
             }
         }
     }
@@ -71,7 +82,7 @@ public class SkinInShop : MonoBehaviour
         if (PlayerPrefs.GetInt(skinInfo.skinID.ToString(), 0) == 1 || skinInfo.skinPrice == 0)
         {
             isSkinUnlocked = true;
-            buttonText.text = "Equip";
+            buttonText.text = equipText;
         }
     }
 
@@ -79,7 +90,7 @@ public class SkinInShop : MonoBehaviour
     {
         if (PlayerPrefs.GetString("skinPref", SSkinInfo.SkinIDs.Default.ToString()) == skinInfo.skinID.ToString())
         {
-            buttonText.text = "Equiped";
+            buttonText.text = equipedText;
         }
     }
 }
