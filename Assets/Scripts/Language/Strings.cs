@@ -22,6 +22,8 @@ public class Strings : MonoBehaviour
     public string recordsText;
     public string pausedText;
 
+    public string rateText;
+
     private List<string> stringList = new List<string>();
     private void Awake()
     {
@@ -54,6 +56,8 @@ public class Strings : MonoBehaviour
             gameOverText = "Game Over";
             recordsText = "Records:";
             pausedText = "Paused";
+
+            rateText = "Rate Game";
         }
         else if (PlayerPrefs.GetString("Language", "English") == "Russian")
         {
@@ -71,6 +75,8 @@ public class Strings : MonoBehaviour
             gameOverText = "Конец Игры";
             recordsText = "Рекорды:";
             pausedText = "Пауза";
+
+            rateText = "Оценить Игру";
         }
 
         AddAllStringsToList();
@@ -92,6 +98,7 @@ public class Strings : MonoBehaviour
         stringList.Add(gameOverText); // 10
         stringList.Add(recordsText); // 11
         stringList.Add(pausedText); // 12
+        stringList.Add(rateText); // 13
     }
 
     public string GetString(int stringID)

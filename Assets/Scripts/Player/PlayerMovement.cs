@@ -68,8 +68,8 @@ public class PlayerMovement : MonoBehaviour
 
     private IEnumerator PowerupCountdownRoutine(int powerupNumber)
     {
-        powerupUI.UpdatePowerupCountdown(powerupNumber, 5f);
-        yield return new WaitForSeconds(5);
+        powerupUI.UpdatePowerupCountdown(powerupNumber, 10f);
+        yield return new WaitForSeconds(10);
         powerupIndicators[powerupNumber].SetActive(false);
         hasPowerups[powerupNumber] = false;
     }

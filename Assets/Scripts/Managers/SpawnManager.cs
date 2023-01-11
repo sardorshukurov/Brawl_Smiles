@@ -83,7 +83,7 @@ public class SpawnManager : MonoBehaviour
     {
         int randomNumber = Random.Range(1, 101);
         Debug.Log(randomNumber);
-        if (randomNumber % 2 == 0)
+        if (randomNumber % 3 == 0)
         {
             Instantiate(coinPrefab, positionToSpawn.position, coinPrefab.transform.rotation);
         }

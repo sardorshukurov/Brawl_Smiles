@@ -10,12 +10,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    
     [DllImport("__Internal")]    
     private static extern void ShowAdv();
-
+    
     [DllImport("__Internal")]
-    private static extern void AddCoinsExtern();
-
+    private static extern void AddCoins();
+    
     [SerializeField] private TextMeshProUGUI currentTimeText;
     private float currentTime;
     [SerializeField] private GameObject gameOverUI;
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        transform.parent = null;
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
             ChangePage(0);
@@ -217,13 +219,15 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetInt(coinPref, PlayerPrefs.GetInt(coinPref, 0) + 1);
     }
-
+    
     public void ShowAdvButton()
     {
-        AddCoinsExtern();
+        AddCoins();
     }
+
     public void AddCoinsForAd()
     {
         PlayerPrefs.SetInt(coinPref, PlayerPrefs.GetInt(coinPref, 0) + 300);
     }
+    
 }
