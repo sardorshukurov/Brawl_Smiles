@@ -11,10 +11,10 @@ mergeInto(LibraryManager.library, {
       if (value) {
         ysdk.feedback.requestReview()
         .then(({ feedbackSent }) => {
-          console.log(feedbackSent);
+          myGameInstance.SendMessage("Game Manager", "TurnOffRateButton");
         })
       } else {
-        console.log(reason)
+        myGameInstance.SendMessage("Game Manager", "TurnOffRateButton");
       }
     })
   },
@@ -47,6 +47,7 @@ mergeInto(LibraryManager.library, {
         }, 
         onError: (e) => {
           console.log('Error while open video ad:', e);
+          myGameInstance.SendMessage("Game Manager", "OnAdSeen");
         }
     }
 })

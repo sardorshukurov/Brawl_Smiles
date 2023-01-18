@@ -41,13 +41,12 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject pauseUI;
 
-    [SerializeField] private LevelLoader levelLoader;
-
     [SerializeField] private TextMeshProUGUI mainMenuCoinText;
     private string recordTimePref = "RecordTime";
     private string recordKilledPref = "RecordKilled";
     public string coinPref = "Coin";
-
+    
+    [SerializeField] private GameObject rateButton;
     private void Awake()
     {
         if (Instance == null)
@@ -120,7 +119,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        // ShowAdv();
+        ShowAdv();
         StartCoroutine(GameOverCountDown());    
     }
 
@@ -149,16 +148,16 @@ public class GameManager : MonoBehaviour
 
     public void Play()
     {
-        // ShowAdv();
+        ShowAdv();
         SoundManager.Instance.PlaySound(clip);
-        StartCoroutine(levelLoader.LoadLevel(1));
+        SceneManager.LoadScene(1);
     }
 
     public void Home()
     {
-        // ShowAdv();
+        ShowAdv();
         SoundManager.Instance.PlaySound(clip);
-        StartCoroutine(levelLoader.LoadLevel(0));
+        SceneManager.LoadScene(0);
         pause = false;
     }
 
@@ -222,14 +221,23 @@ public class GameManager : MonoBehaviour
     
     public void ShowAdvButton()
     {
-        SoundManager.Instance.ChangePauseStateOfMusic();
+        OnAdSeen();
         AddCoins();
     }
 
     public void AddCoinsForAd()
     {
-        SoundManager.Instance.ChangePauseStateOfMusic();
+        OnAdSeen();
         PlayerPrefs.SetInt(coinPref, PlayerPrefs.GetInt(coinPref, 0) + 100);
     }
-    
+
+    public void OnAdSeen()
+    {
+        SoundManager.Instance.ChangePauseStateOfMusic();
+    }
+
+    public void TurnOffRateButton()
+    {
+        rateButton.SetActive(false);
+    }
 }
