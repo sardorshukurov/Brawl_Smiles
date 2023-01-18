@@ -227,7 +227,7 @@ public class GameManager : MonoBehaviour
 
     public void AddCoinsForAd()
     {
-        PlayerPrefs.SetInt(coinPref, PlayerPrefs.GetInt(coinPref, 0) + 300);
+        PlayerPrefs.SetInt(coinPref, PlayerPrefs.GetInt(coinPref, 0) + 150);
     }
     
 }

@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class Yandex : MonoBehaviour
 {
-    [SerializeField] private AudioClip clip;
+    //[SerializeField] private AudioClip clip;
     [DllImport("__Internal")]
     private static extern void RateGame();
 
 
     public void RateGameButton()
     {
-        SoundManager.Instance.PlaySound(clip);
         RateGame();
+        //SoundManager.Instance.PlaySound(clip);
     }
 }
