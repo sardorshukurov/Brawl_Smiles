@@ -12,7 +12,7 @@ public class StringChanger : MonoBehaviour
         text = GetComponent<TextMeshProUGUI>();    
     }
 
-    private void Update()
+    public void Update()
     {
         text.text = Strings.Instance.GetString(textID);
     }

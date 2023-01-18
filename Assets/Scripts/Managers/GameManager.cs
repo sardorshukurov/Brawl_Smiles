@@ -120,7 +120,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        ShowAdv();
+        // ShowAdv();
         StartCoroutine(GameOverCountDown());    
     }
 
@@ -149,14 +149,14 @@ public class GameManager : MonoBehaviour
 
     public void Play()
     {
-        ShowAdv();
+        // ShowAdv();
         SoundManager.Instance.PlaySound(clip);
         StartCoroutine(levelLoader.LoadLevel(1));
     }
 
     public void Home()
     {
-        ShowAdv();
+        // ShowAdv();
         SoundManager.Instance.PlaySound(clip);
         StartCoroutine(levelLoader.LoadLevel(0));
         pause = false;
@@ -200,7 +200,7 @@ public class GameManager : MonoBehaviour
         TimeSpan interval;
         if (TimeSpan.TryParseExact(secondTimeSpan, @"mm\:ss", null, TimeSpanStyles.AssumeNegative, out interval))
         {
-            Debug.Log(interval);
+            //Debug.Log(interval);
         }
         else
         {

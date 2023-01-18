@@ -17,23 +17,23 @@ public class PowerupUI : MonoBehaviour
         powerup2 = 0;
         powerup1Text.text = powerup1String;
         powerup2Text.text = powerup2String;
-    }
-
-    private void Update()
-    {
+        
         powerup1String = Strings.Instance.GetString(9);
         powerup2String = Strings.Instance.GetString(8);
+    }
 
+    private void LateUpdate()
+    {
         if (powerup1 > 0)
         {
             powerup1GameObject.SetActive(true);
-            powerup2GameObject.SetActive(true);
+            // powerup2GameObject.SetActive(true);
             powerup1Text.text = powerup1String + Mathf.Round(powerup1);
             powerup1 -= Time.deltaTime;
         }
         else if(powerup2 > 0)
         {
-            powerup1GameObject.SetActive(true);
+            // powerup1GameObject.SetActive(true);
             powerup2GameObject.SetActive(true);
             powerup2Text.text = powerup2String + Mathf.Round(powerup2);
             powerup2 -= Time.deltaTime;
@@ -47,13 +47,14 @@ public class PowerupUI : MonoBehaviour
 
     public void UpdatePowerupCountdown(int powerupNumber, float powerupCountdown)
     {
-        if (powerupNumber == 0)
+        switch (powerupNumber)
         {
-            powerup1 += powerupCountdown;
-        }
-        else if (powerupNumber == 1)
-        {
-            powerup2 += powerupCountdown;
+            case 0:
+                powerup1 += powerupCountdown;
+                break;
+            case 1:
+                powerup2 += powerupCountdown;
+                break;
         }
     }
 }

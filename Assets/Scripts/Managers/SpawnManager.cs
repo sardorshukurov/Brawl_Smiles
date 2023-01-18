@@ -1,7 +1,10 @@
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 
 public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager Instance;
+    
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private GameObject[] powerupPrefabs;
     [SerializeField] private GameObject coinPrefab;
@@ -9,10 +12,24 @@ public class SpawnManager : MonoBehaviour
     public int enemyCount;
     public int waveNumber = 1;
 
-    private float spawnRange = 30f;
-
+    private float spawnRange = 20f;
+    private float spawnRangeLimit = 5f;
+    
     private Vector2 powerupSpawnPosition = new Vector2(0, -2);
-
+    
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    
     private void Start()
     {
         SpawnEnemyWave(waveNumber);
@@ -20,7 +37,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        enemyCount = FindObjectsOfType<Enemy>().Length;
+        // enemyCount = FindObjectsOfType<Enemy>().Length;
 
         if (enemyCount == 0)
         {
@@ -51,10 +68,11 @@ public class SpawnManager : MonoBehaviour
     private float RandomSpawnPositionXY()
     {
         float returnValue = Random.Range(-spawnRange, spawnRange);
-        if ((returnValue > -5) && (returnValue < 5))
+        if (returnValue > -spawnRangeLimit && returnValue < spawnRangeLimit)
         {
             returnValue = Random.Range(-spawnRange, spawnRange);
-        }return  returnValue;
+        }
+        return  returnValue;
     }
 
     private Vector2 RandomPositionVector2()
@@ -82,7 +100,7 @@ public class SpawnManager : MonoBehaviour
     public void SpawnCoin(Transform positionToSpawn)
     {
         int randomNumber = Random.Range(1, 101);
-        Debug.Log(randomNumber);
+        // Debug.Log(randomNumber);
         if (randomNumber % 3 == 0)
         {
             Instantiate(coinPrefab, positionToSpawn.position, coinPrefab.transform.rotation);

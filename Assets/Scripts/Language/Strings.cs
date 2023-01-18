@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,7 +39,7 @@ public class Strings : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void OnLanguageChange()
     {
         if (PlayerPrefs.GetString("Language", "English") == "English")
         {
@@ -49,7 +50,7 @@ public class Strings : MonoBehaviour
             backButton = "Back";
             buyButton = "Buy";
             equipButton = "Equip";
-            equipedText = "Equiped";
+            equipedText = "Equipped";
 
             freezeText = "Freeze: ";
             increasedDamageText = "Increased Damage: ";
@@ -61,27 +62,27 @@ public class Strings : MonoBehaviour
         }
         else if (PlayerPrefs.GetString("Language", "English") == "Russian")
         {
-            menuPlayButton = "Играть";
-            menuSettingsButton = "Настройки";
-            menuQuitButton = "Выйти";
-            changeSkinButton = "Поменять Скин";
-            backButton = "Назад";
-            buyButton = "Купить";
-            equipButton = "Надеть";
-            equipedText = "Надето";
+            menuPlayButton = "РРіСЂР°С‚СЊ";
+            menuSettingsButton = "РќР°СЃС‚СЂРѕР№РєРё";
+            menuQuitButton = "Р’С‹Р№С‚Рё";
+            changeSkinButton = "РџРѕРјРµРЅСЏС‚СЊ РЎРєРёРЅ";
+            backButton = "РќР°Р·Р°Рґ";
+            buyButton = "РљСѓРїРёС‚СЊ";
+            equipButton = "РќР°РґРµС‚СЊ";
+            equipedText = "РќР°РґРµС‚Рѕ";
 
-            freezeText = "Заморозка: ";
-            increasedDamageText = "Дополнительный Урон: ";
-            gameOverText = "Конец Игры";
-            recordsText = "Рекорды:";
-            pausedText = "Пауза";
+            freezeText = "Р—Р°РјРѕСЂРѕР·РєР°: ";
+            increasedDamageText = "Р”РѕРїРѕР»РЅРёС‚РµР»СЊРЅС‹Р№ РЈСЂРѕРЅ: ";
+            gameOverText = "РљРѕРЅРµС† РРіСЂС‹";
+            recordsText = "Р РµРєРѕСЂРґС‹:";
+            pausedText = "РџР°СѓР·Р°";
 
-            rateText = "Оценить Игру";
+            rateText = "РћС†РµРЅРёС‚СЊ РРіСЂСѓ";
         }
 
         AddAllStringsToList();
     }
-
+    
     private void AddAllStringsToList()
     {
         stringList.Clear();
@@ -103,6 +104,7 @@ public class Strings : MonoBehaviour
 
     public string GetString(int stringID)
     {
+        OnLanguageChange();
         return stringList[stringID];
     }
 }

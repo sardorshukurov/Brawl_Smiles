@@ -40,7 +40,7 @@ mergeInto(LibraryManager.library, {
         },
         onRewarded: () => {
           console.log('Rewarded!');
-          myGameInstance.SendMessage("GameManager", "AddCoinsForAd");
+          myGameInstance.SendMessage("Game Manager", "AddCoinsForAd");
         },
         onClose: () => {
           console.log('Video ad closed.');
