@@ -26,5 +26,17 @@ public class SoundManager : MonoBehaviour
     {
         AudioListener.volume = volume;
     }
+
+    public void ChangePauseStateOfMusic()
+    {
+        if (musicSource.isPlaying)
+        {
+            musicSource.Pause();
+        }
+        else
+        {
+            musicSource.UnPause();
+        }
+    }
 }
 

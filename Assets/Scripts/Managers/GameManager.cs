@@ -222,12 +222,14 @@ public class GameManager : MonoBehaviour
     
     public void ShowAdvButton()
     {
+        SoundManager.Instance.ChangePauseStateOfMusic();
         AddCoins();
     }
 
     public void AddCoinsForAd()
     {
-        PlayerPrefs.SetInt(coinPref, PlayerPrefs.GetInt(coinPref, 0) + 150);
+        SoundManager.Instance.ChangePauseStateOfMusic();
+        PlayerPrefs.SetInt(coinPref, PlayerPrefs.GetInt(coinPref, 0) + 100);
     }
     
 }

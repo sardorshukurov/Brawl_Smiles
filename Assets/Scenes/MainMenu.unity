@@ -1553,7 +1553,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27467709fecdb1d44aa24e88c206eb99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clip: {fileID: 8300000, guid: 6d5fd90b590c9e64495f0f35930b0752, type: 3}
 --- !u!4 &369692532
 Transform:
   m_ObjectHideFlags: 0
@@ -5021,7 +5020,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: +150
+  m_text: +100
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5234f76319db1104c89d4b00e2998735, type: 2}
   m_sharedMaterial: {fileID: -5123776935426107985, guid: 5234f76319db1104c89d4b00e2998735, type: 2}
