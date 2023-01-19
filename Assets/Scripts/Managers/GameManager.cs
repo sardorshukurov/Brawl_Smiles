@@ -17,6 +17,11 @@ public class GameManager : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void AddCoins();
     
+    [DllImport("__Internal")]
+    private static extern void SetToLeaderboard_Enemies(int value);
+    [DllImport("__Internal")]
+    private static extern void SetToLeaderboard_Time(TimeSpan value);
+    
     [SerializeField] private TextMeshProUGUI currentTimeText;
     private float currentTime;
     [SerializeField] private GameObject gameOverUI;
@@ -105,12 +110,14 @@ public class GameManager : MonoBehaviour
             if (CompareTimeSpan(time, PlayerPrefs.GetString(recordTimePref, "00:00")))
             {
                 PlayerPrefs.SetString(recordTimePref, time.ToString(@"mm\:ss"));
+                SetToLeaderboard_Time(time);
             }
             //PlayerPrefs.SetString(recordTimePref, time.ToString(@"mm\:ss"));
 
             if (enemyKilledCount > PlayerPrefs.GetInt(recordKilledPref, 0))
             {
                 PlayerPrefs.SetInt(recordKilledPref, enemyKilledCount);
+                SetToLeaderboard_Enemies(PlayerPrefs.GetInt(recordKilledPref, 0));
             }
             gameOverRecordTimeText.text = PlayerPrefs.GetString(recordTimePref, "00:00");
             gameOverRecrodEnemyKilledText.text = PlayerPrefs.GetInt(recordKilledPref, 0).ToString();

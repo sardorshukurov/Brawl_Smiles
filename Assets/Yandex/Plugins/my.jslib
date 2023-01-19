@@ -11,6 +11,7 @@ mergeInto(LibraryManager.library, {
       if (value) {
         ysdk.feedback.requestReview()
         .then(({ feedbackSent }) => {
+          console.log(feedbackSent);
           myGameInstance.SendMessage("Game Manager", "TurnOffRateButton");
         })
       } else {
@@ -51,5 +52,18 @@ mergeInto(LibraryManager.library, {
         }
     }
 })
+  },
+
+  SetToLeaderboard_Enemies: function (value) {
+    ysdk.getLeaderboards()
+      .then(lb => {
+        lb.setLeaderboardScore('Enemies', value);
+      });
+  },
+  SetToLeaderboard_Time: function (value) {
+  ysdk.getLeaderboards()
+    .then(lb => {
+      lb.setLeaderboardScore('Time', value);
+    });
   },
 });
